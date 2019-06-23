@@ -8,6 +8,7 @@ import java.util.*;
 // 给定一个二叉树，不使用递归的方式求出其中序遍历
 public class Num94_BinaryTreeInorderTraversal {
     // 思路是：利用栈进行递归模拟
+    // 中序遍历：左根右
     public List<Integer> inorderTraversal(TreeNode root){
         List<Integer> ans = new LinkedList<Integer>();
         if(root==null)
