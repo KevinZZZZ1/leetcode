@@ -24,18 +24,21 @@ import java.util.Arrays;
 // 二分图是指：如果可以用两种颜色对图中的节点进行着色，并且保证相邻的节点颜色不同，那么这个图就是二分图。
 public class Num785_IsGraphBipartite {
     // graph的行数表示图中点数，<i, graph[i][j]>表示点i到点graph[i][j]的边
+    // 思路是，创建一个数组来记录每个点的颜色，然后从每个点出发遍历其连通的所有点，进行上色或判断
     public boolean isBipartite(int[][] graph) {
+        // 每个点对应的颜色，-1代表未访问过，
         int[] colors = new int[graph.length];
         Arrays.fill(colors, -1);
         for (int i = 0; i < graph.length; i++) {  // 处理图不是连通的情况
+            //
             if (colors[i] == -1 && !isBipartite(i, 0, colors, graph)) {
                 return false;
             }
         }
         return true;
     }
-
     private boolean isBipartite(int curNode, int curColor, int[] colors, int[][] graph) {
+        // 点curNode被访问过
         if (colors[curNode] != -1) {
             return colors[curNode] == curColor;
         }
