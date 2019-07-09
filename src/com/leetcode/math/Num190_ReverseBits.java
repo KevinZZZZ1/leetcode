@@ -15,7 +15,7 @@ public class Num190_ReverseBits {
     }
 
 
-    // 如果reverseBits被多次调用的话，该怎么样优化
+    // 如果reverseBits被多次调用的话，该怎么样优化：可以使用一个Map进行缓存，每4位一次操作
 
 
     public static void main(String[] args) {
