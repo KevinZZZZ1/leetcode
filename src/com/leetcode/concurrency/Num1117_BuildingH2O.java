@@ -6,8 +6,8 @@ public class Num1117_BuildingH2O {
 
     }
 
-    private final Object lock = new Object();
-    private int hCount = 0;
+    private final Object lock = new Object(); // 互斥锁
+    private int hCount = 0; // 记录产生了多少个H
 
 
     public void hydrogen(Runnable releaseHydrogen) throws InterruptedException {
