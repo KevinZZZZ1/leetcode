@@ -21,7 +21,7 @@ public class Num695_MaxAreaofIsland {
     }
 
     private int dfs(int[][] grid, int i, int j) {
-        if(i<0 || i>=m || j<0 || j>=m || grid[i][j]==0)
+        if(i<0 || i>=m || j<0 || j>=n || grid[i][j]==0)
             return 0;
         // 将grid[i][j]置为0表示已经访问过
         grid[i][j] = 0;
