@@ -27,7 +27,6 @@ public class Num213_HouseRobberII {
             int cur = Math.max(pre1, pre2+nums[i]);
             pre2 = pre1;
             pre1 = cur;
-
         }
         return pre1;
     }
