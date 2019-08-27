@@ -24,45 +24,68 @@ public class Num494_TargetSum {
     //sum(P) + sum(N) + sum(P) - sum(N) = target + sum(P) + sum(N)
     //                       2 * sum(P) = target + sum(nums)
     //因此只要找到一个子集，令它们都取正号，并且和等于 (target + sum(nums))/2，就证明存在解。
-    public int findTargetSumWays(int[] nums, int S) {
+//    public int findTargetSumWays(int[] nums, int S) {
+//        if (nums==null || nums.length==0)
+//            return 0;
+//
+//        int sum = computeArraySum(nums);
+//        if (sum<S || (S+sum)%2==1)
+//            return 0;
+//        // 计算nums中0的个数
+////        int numZeros = 0;
+////        for (int tmp: nums){
+////            if (tmp==0)
+////                numZeros++;
+////        }
+//
+//
+//        int W = (S+sum)/2;
+//        int n = nums.length;
+//        // dp[i][j]表示前i个元素能表示整数j有多少种方法
+//        int[][] dp = new int[n+1][W+1];
+//        // 初始化dp矩阵
+//        for (int i = 0; i <= n; i++) {
+//            dp[i][0] = 1;
+//        }
+//
+//       for (int i = 1; i <= n; i++) {
+//            for (int j = 1; j<= W; j++) {
+//
+//                if(j>=nums[i-1]) {
+//                    // 能放下nums[i-1]，然后选还是不选
+//                    dp[i][j] = dp[i-1][j] + dp[i-1][j-nums[i-1]];
+//                }else {
+//                    // 不能放下nums[i-1]，只能不选
+//                    dp[i][j] = dp[i-1][j];
+//                }
+//
+//            }
+//        }
+//
+//        return dp[n][W];
+//    }
+
+    public int findTargetSumWays(int[] nums, int S ) {
         if (nums==null || nums.length==0)
             return 0;
-
         int sum = computeArraySum(nums);
-        if (sum<S || (S+sum)%2==1)
+
+        if (sum<S || (sum+S)%2==1)
             return 0;
-        // 计算nums中0的个数
-//        int numZeros = 0;
-//        for (int tmp: nums){
-//            if (tmp==0)
-//                numZeros++;
-//        }
+        int W = (sum+S)/2;
+        int[] dp = new int[W+1];
+        dp[0] = 1;
 
-
-        int W = (S+sum)/2;
-        int n = nums.length;
-        // dp[i][j]表示前i个元素能表示整数j有多少种方法
-        int[][] dp = new int[n+1][W+1];
-        // 初始化dp矩阵
-        for (int i = 0; i <= n; i++) {
-            dp[i][0] = 1;
-        }
-
-       for (int i = 1; i <= n; i++) {
-            for (int j = 1; j<= W; j++) {
-
-                if(j>=nums[i-1]) {
-                    // 能放下nums[i-1]，然后选还是不选
-                    dp[i][j] = dp[i-1][j] + dp[i-1][j-nums[i-1]];
-                }else {
-                    // 不能放下nums[i-1]，只能不选
-                    dp[i][j] = dp[i-1][j];
-                }
-
+        for (int i = 0; i < nums.length; i++) {
+            for (int j = 1; j <= W; j++) {
+                if (j>=nums[i])
+                    dp[j] = dp[j] + dp[j-nums[i]];
+                else
+                    dp[j] = dp[j];
             }
         }
 
-        return dp[n][W];
+        return dp[W];
     }
 
 //    public int findTargetSumWays(int[] nums, int S) {
