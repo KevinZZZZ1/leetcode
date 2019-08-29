@@ -11,6 +11,9 @@ public class Num139_WordBreak {
 
     public boolean wordBreak(String s, List<String> wordDict) {
         int n = s.length();
+        // dp[i][j]表示wordDict中前i个字符串能否表示出字符串s的前j个字符
+        // 那么dp[i][j] = dp[i-1][j] || dp[i-1][j-len(wordDict[i])]
+        // 可以写成dp[j] = dp[j] || dp[j-len(wordDict[i])]
         boolean[] dp = new boolean[n + 1];
         dp[0] = true;
         for (int i = 1; i <= n; i++) {
